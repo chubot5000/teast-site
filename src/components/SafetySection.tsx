@@ -1,40 +1,36 @@
 "use client";
 
 import Image from "next/image";
+import PillButton from "./PillButton";
 
 export default function SafetySection() {
   return (
-    <section className="relative h-svh w-full overflow-clip px-24">
-      <div className="relative h-full w-full">
-        <div className="rounded-calc absolute inset-0 h-full w-full overflow-clip text-white">
-          {/* Background Image */}
-          <div className="absolute inset-0">
-            <Image
-              src="/images/truck-sunset-closeup.jpg"
-              alt="Setting new standards for AV safety."
-              fill
-              className="absolute inset-0 h-full w-full object-cover"
-              sizes="100vw"
-              priority
-            />
-          </div>
-
-          {/* Content — bottom-left aligned */}
-          <div className="relative flex h-full w-full flex-col items-start justify-end gap-24 pb-40 md:gap-48 md:pb-105">
-            {/* Heading with inline text sizes matching source */}
-            <div className="w-calc text-[5.5rem] leading-[90%] tracking-[-0.22rem] md:text-[max(9rem,min(9vw,13rem))] md:tracking-[max(-0.6rem,min(-0.3vw,-0.52rem))]">
+    <section className="relative min-h-svh w-full overflow-clip text-white">
+      <div
+        className="absolute inset-0 overflow-clip"
+        style={{ transform: "translateY(-12%)" }}
+      >
+        <Image
+          src="/images/sensor-visualization.gif"
+          alt="Safety visualization"
+          fill
+          className="h-full w-full object-cover"
+          unoptimized
+        />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent" />
+      <div className="relative z-2 px-40 py-60 md:p-103">
+        <div className="w-calc">
+          <div className="flex w-full flex-col items-start gap-24 md:max-w-525 md:gap-48">
+            <h2 className="type-z-34 md:type-z-80 text-pretty">
               Setting new standards for AV safety.
-            </div>
-
-            {/* Pink CTA button */}
-            <div className="w-calc flex justify-start">
-              <a
-                href="/safety"
-                className="flex h-36 shrink-0 items-center justify-center rounded-full px-24 md:h-48 bg-pink text-white type-s-12 transition-colors duration-300 hover:bg-pink/80"
-              >
-                Explore our approach
-              </a>
-            </div>
+            </h2>
+            <p className="type-z-18 md:type-z-24 text-current/60">
+              For us, safety isn&apos;t a box to check—it&apos;s a commitment we
+              strengthen daily with a simulation-first approach, rigorous
+              validation, and a culture where safety is everyone&apos;s job.
+            </p>
+            <PillButton href="#safety">Explore our approach</PillButton>
           </div>
         </div>
       </div>

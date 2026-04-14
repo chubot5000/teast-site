@@ -1,110 +1,155 @@
 "use client";
 
-import { useRef } from "react";
+import { useState } from "react";
 import Image from "next/image";
+import PillButton from "./PillButton";
 
 const partners = [
   {
     name: "Volvo",
-    author: "Nils Jaeger",
-    authorTitle: "CEO of Volvo Autonomous Solutions",
-    review:
-      "Partnerships like the one between Volvo Autonomous Solutions and Waabi play an important role not only in advancing autonomous technology, but also in building the broader ecosystem required to support commercial deployment.",
-    image: "/images/volvo-partnership-truck.png",
-    logo: "/images/nvidia-logo.svg",
+    quote: "",
+    author: "",
+    authorTitle: "",
+    logo: "",
+    link: "",
   },
   {
     name: "Uber",
-    author: "Dara Khosrowshahi",
-    authorTitle: "CEO of Uber",
-    review:
-      "Waabi's expanded focus on robotaxis marks an important milestone for their team and the AV industry more broadly. We're very excited to deepen our partnership with Waabi as they significantly scale their Physical AI Platform and enter a new phase of an already remarkable journey.",
-    image: "/images/driverless-cab.png",
-    logo: null,
+    quote: "",
+    author: "",
+    authorTitle: "",
+    logo: "",
+    link: "",
   },
   {
     name: "Uber Freight",
-    author: "Olivia Hu",
-    authorTitle:
-      "Head of Autonomous Trucking & Electrification at Uber Freight",
-    review:
-      "Our partnership with Waabi represents the power of combining cutting-edge technology with a vast logistics network to drive meaningful industry impact. By advancing operational excellence and scaling real-world applications, this collaboration underscores our joint commitment to transforming autonomous freight.",
-    image: "/images/uber-freight-truck.jpg",
-    logo: null,
+    quote: "",
+    author: "",
+    authorTitle: "",
+    logo: "",
+    link: "",
   },
   {
     name: "NVIDIA",
+    quote:
+      "Waabi represents a true breakthrough by treating autonomy as a scalable intelligence problem. Built on NVIDIA compute, Waabi is unlocking real deployment—and we're proud to support them as one of the future giants of AI.",
     author: "Jensen Huang",
     authorTitle: "Founder and CEO of NVIDIA",
-    review:
-      "Waabi represents a true breakthrough by treating autonomy as a scalable intelligence problem. Built on NVIDIA compute, Waabi is unlocking real deployment—and we're proud to support them as one of the future giants of AI.",
-    image: "/images/waabi-nvidia-logos.png",
     logo: "/images/nvidia-logo.svg",
+    link: "https://www.waabi.ai/insights/nvidia-drivethor",
   },
 ];
 
 export default function PartnersSection() {
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeTab, setActiveTab] = useState(3);
+
+  const active = partners[activeTab];
 
   return (
-    <section
-      className="bg-background text-dark relative w-full py-[var(--padding-y)]"
-      data-theme="light"
-    >
-      {/* Heading */}
-      <div className="w-calc flex flex-col md:flex-row md:items-end md:justify-between gap-24 mb-48 md:mb-80">
-        <div className="flex flex-col gap-24 max-w-700">
-          <h2 className="type-z-34 md:type-z-60 text-dark text-balance">
-            Trusted by the best in the industry.
-          </h2>
-          <p className="type-s-15 text-black/50">
-            From hardware providers and OEMs to retailers, logistics providers
-            and carriers, the best in the business count on Waabi to deliver real
-            results.
-          </p>
-        </div>
-      </div>
+    <section id="partnerships" className="relative flex w-full flex-col">
+      <div className="debug absolute inset-0 pointer-events-none" />
+      <section className="relative min-h-screen w-full overflow-clip bg-white py-[var(--padding-y)]">
+        <div className="flex flex-col items-center gap-48 md:gap-96">
+          {/* Header */}
+          <div className="w-calc flex gap-30 max-lg:flex-col md:gap-48 xl:gap-240">
+            <div className="flex flex-col gap-y-48">
+              <div className="flex w-full text-balance">
+                <h2 className="type-z-34 md:type-z-80 text-balance">
+                  Trusted by the best in the industry.
+                </h2>
+              </div>
+            </div>
+            <div className="max-lg:w-calc flex flex-col justify-end gap-30 lg:max-w-[44.7rem] lg:gap-48 lg:pl-48">
+              <p className="type-z-18 md:type-z-24 text-current/50">
+                From hardware providers and OEMs to retailers, logistics
+                providers and carriers, the best in the business count on Waabi
+                to deliver real results.
+              </p>
+            </div>
+          </div>
 
-      {/* Horizontal Scrolling Cards */}
-      <div
-        ref={scrollRef}
-        className="flex gap-12 md:gap-16 overflow-x-scroll no-scrollbar px-calc snap-x snap-mandatory"
-      >
-        {partners.map((partner) => (
+          {/* Partner card */}
           <div
-            key={partner.name}
-            className="group relative shrink-0 w-[calc(100vw-8rem)] md:w-[44.7rem] rounded-calc overflow-clip snap-start"
+            className="w-calc relative flex flex-col items-center justify-between md:flex-row"
+            style={{ "--padding": "2.4rem" } as React.CSSProperties}
           >
-            {/* Background Image */}
-            <div className="relative aspect-[351/221] md:aspect-[448/336]">
-              <Image
-                src={partner.image}
-                alt={partner.name}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
-                sizes="(max-width: 768px) 90vw, 45rem"
-              />
-              {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-b from-black/0 to-black/50" />
+            <div className="relative aspect-square w-full overflow-clip rounded-t-[var(--rounded-unit)] md:aspect-[unset] md:h-[80.7rem] md:w-10/12">
+              <div className="absolute inset-0" style={{ transform: "translateY(-12%) scale(1.1)" }}>
+                <Image
+                  src="/images/waabi-nvidia-logos.png"
+                  alt="Partnership"
+                  fill
+                  className="h-full w-full object-cover"
+                />
+              </div>
             </div>
 
-            {/* Text Content */}
-            <div className="absolute bottom-0 left-0 right-0 p-20 md:p-24 text-white flex flex-col gap-16">
-              <p className="type-z-18 text-white italic leading-[125%]">
-                &ldquo;{partner.review}&rdquo;
-              </p>
-              <div className="flex flex-col gap-4">
-                <p className="type-s-12 text-white font-neue">
-                  {partner.author}
-                </p>
-                <p className="type-s-11 text-white/60 font-neue">
-                  {partner.authorTitle}
-                </p>
+            {/* Testimonial card overlay */}
+            <div className="rounded-calc relative mt-[-2.8rem] flex w-full flex-col items-start justify-center bg-[var(--color-cream)] px-28 py-32 md:absolute md:right-0 md:bottom-40 md:w-[48rem] md:px-48 md:py-48">
+              {/* Tab navigation */}
+              <div className="relative flex h-32 w-full items-center gap-24 border-b border-current/10">
+                {partners.map((partner, i) => (
+                  <button
+                    key={partner.name}
+                    className={`relative h-33 shrink-0 items-center border-b-2 px-10 ${
+                      activeTab === i
+                        ? "border-pink text-current"
+                        : "border-transparent text-current/25"
+                    }`}
+                    onClick={() => setActiveTab(i)}
+                  >
+                    <span className="type-s-14 md:type-s-15">{partner.name}</span>
+                  </button>
+                ))}
+              </div>
+
+              {/* Quote content */}
+              <div className="relative flex flex-col md:gap-90">
+                <div className="relative flex w-full flex-col items-start justify-start gap-30 md:gap-34">
+                  <div className="relative flex w-full shrink-0 grow basis-0 flex-col items-start justify-between gap-24 md:justify-start">
+                    {active.quote && (
+                      <div className="flex flex-col gap-24 pt-24">
+                        <p className="type-h-18 md:type-z-24">{active.quote}</p>
+                        <div className="relative flex flex-col">
+                          <span className="type-s-11 md:type-s-12">
+                            {active.author}
+                          </span>
+                          <span className="type-s-11 md:type-s-12">
+                            {active.authorTitle}
+                          </span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Logo + CTA */}
+                <div className="flex items-center justify-between self-stretch pt-24">
+                  {active.logo && (
+                    <div className="hidden md:flex">
+                      <div className="flex-center relative h-80 w-80">
+                        <div className="flex-center absolute inset-0">
+                          <div className="flex-center relative w-40">
+                            <Image
+                              src={active.logo}
+                              alt={`${active.name}-logo`}
+                              width={40}
+                              height={40}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  {active.link && (
+                    <PillButton href={active.link}>See the details</PillButton>
+                  )}
+                </div>
               </div>
             </div>
           </div>
-        ))}
-      </div>
+        </div>
+      </section>
     </section>
   );
 }

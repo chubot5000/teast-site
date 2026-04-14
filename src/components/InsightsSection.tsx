@@ -1,144 +1,194 @@
 "use client";
 
+import { useRef, useState } from "react";
 import Image from "next/image";
+import PillButton from "./PillButton";
+import { NavArrowLeft, NavArrowRight } from "./icons";
 
 const articles = [
   {
     title: "Waabi secures $1 Billion in new funding to lead Physical AI revolution",
-    slug: "waabi-secures-1-billion-in-new-funding-to-lead-physical-ai-revolution",
-    thumbnail: "/images/trucks-facility.png",
     tags: ["Company news"],
-    date: "2026-01-28",
+    date: "January 28, 2026",
+    image: "/images/truck-driver-portrait.png",
+    href: "https://www.waabi.ai/insights/waabi-secures-1-billion-in-new-funding-to-lead-physical-ai-revolution",
   },
   {
     title: "From closed course to public roads: The path to driverless",
-    slug: "from-closed-course-to-public-roads-the-path-to-driverless",
-    thumbnail: "/images/truck-urban-dallas.jpg",
     tags: ["Technology", "Company news"],
-    date: "2025-12-19",
+    date: "December 19, 2025",
+    image: "/images/driverless-cab.png",
+    href: "https://www.waabi.ai/insights/from-closed-course-to-public-roads-the-path-to-driverless",
   },
   {
     title: "Waabi unlocks direct-to-customer model with surface street driving capabilities",
-    slug: "waabi-unlocks-direct-to-customer-model-enabled-by-industry-leading-surface-street",
-    thumbnail: "/images/truck-traffic-dusk.jpg",
     tags: ["Technology", "Company news"],
-    date: "2025-11-25",
+    date: "November 25, 2025",
+    image: "/images/truck-traffic-dusk.jpg",
+    href: "https://www.waabi.ai/insights/waabi-unlocks-direct-to-customer-model-enabled-by-industry-leading-surface-street",
   },
   {
     title: "Waabi and Volvo demonstrate the future of autonomous trucking at NVIDIA GTC",
-    slug: "waabi-and-volvo-demonstrate-the-future-of-autonomous-trucking",
-    thumbnail: "/images/volvo-partnership-truck.png",
     tags: ["Company news", "Technology"],
-    date: "2025-10-28",
+    date: "October 28, 2025",
+    image: "/images/volvo-partnership-truck.png",
+    href: "https://www.waabi.ai/insights/waabi-and-volvo-demonstrate-the-future-of-autonomous-trucking",
   },
   {
     title: "Waabi hires industry veteran, Lior Ron, as Chief Operating Officer",
-    slug: "waabi-hires-industry-veteran-lior-ron-as-chief-operating-officer",
-    thumbnail: "/images/fleet-trucks-dusk.jpg",
     tags: ["Company news"],
-    date: "2025-08-12",
+    date: "August 12, 2025",
+    image: "/images/trucks-warehouse.png",
+    href: "https://www.waabi.ai/insights/waabi-hires-industry-veteran-lior-ron-as-chief-operating-officer-positioning-the",
   },
   {
     title: "The ultimate driving test for AI: Mixed Reality Testing pushes the boundaries of AV safety",
-    slug: "mixed-reality-testing-pushes-the-boundaries-of-av-safety",
-    thumbnail: "/images/simulation-perception.png",
     tags: ["Technology"],
-    date: "2025-07-14",
+    date: "July 14, 2025",
+    image: "/images/trucks-night.png",
+    href: "https://www.waabi.ai/insights/mixed-reality-testing-pushes-the-boundaries-of-av-safety",
   },
   {
     title: "Join us at CVPR 2025",
-    slug: "join-us-at-cvpr-2025",
-    thumbnail: "/images/pink-gradient.png",
     tags: ["Research"],
-    date: "2025-06-04",
+    date: "June 4, 2025",
+    image: "/images/pink-gradient.png",
+    href: "https://www.waabi.ai/insights/join-us-at-cvpr-2025",
   },
   {
     title: "Simulator realism: The new safety standard for the AV industry",
-    slug: "simulator-realism-the-new-safety-standard-for-the-av-industry",
-    thumbnail: "/images/sensor-visualization.gif",
     tags: ["Technology"],
-    date: "2025-03-11",
+    date: "March 11, 2025",
+    image: "/images/uber-freight-truck.jpg",
+    href: "https://www.waabi.ai/insights/simulator-realism-the-new-safety-standard-for-the-av-industry",
   },
   {
     title: "Waabi and Volvo Autonomous Solutions partner to jointly develop and deploy autonomous transportation solutions",
-    slug: "waabi-and-volvo-autonomous-solutions-partner",
-    thumbnail: "/images/volvo-truck-highway.jpg",
     tags: ["Technology", "Company news"],
-    date: "2025-02-04",
+    date: "February 4, 2025",
+    image: "/images/truck-highway-golden.jpg",
+    href: "https://www.waabi.ai/insights/waabi-and-volvo-autonomous-solutions-partner-to-jointly-develop-and-deploy-autonomous-transportation-solutions",
   },
 ];
 
-function formatDate(dateStr: string) {
-  const d = new Date(dateStr + "T12:00:00");
-  return d.toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
-}
-
 export default function InsightsSection() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const updateScrollState = () => {
+    if (!scrollRef.current) return;
+    const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+    setCanScrollLeft(scrollLeft > 10);
+    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+  };
+
+  const scroll = (direction: "left" | "right") => {
+    if (!scrollRef.current) return;
+    const amount = direction === "left" ? -400 : 400;
+    scrollRef.current.scrollBy({ left: amount, behavior: "smooth" });
+    setTimeout(updateScrollState, 400);
+  };
+
   return (
     <section
-      className="bg-cream-light text-dark relative w-full py-[var(--padding-y)]"
+      id="insights"
+      className="relative flex w-full flex-col relative w-full overflow-clip bg-cream py-(--padding-y)"
     >
-      {/* Heading */}
-      <div className="w-calc flex flex-col md:flex-row md:items-end md:justify-between gap-24 mb-48 md:mb-80">
-        <div className="flex flex-col gap-24 max-w-700">
-          <h2 className="type-z-34 md:type-z-60 text-dark">Insights.</h2>
-          <p className="type-s-15 text-black/50">
-            Explore technology deep dives, behind-the-scenes perspectives, and
-            the ideas shaping the future of autonomy.
-          </p>
+      <div className="debug absolute inset-0 pointer-events-none" />
+      <div className="flex flex-col gap-30 md:gap-48">
+        {/* Header */}
+        <div className="w-calc grid grid-cols-2 gap-y-24 md:gap-y-48">
+          <div className="order-1 md:col-span-2">
+            <div className="flex w-full justify-center">
+              <h2 className="w-calc type-z-34 md:type-z-80 text-balance">
+                Insights.
+              </h2>
+            </div>
+          </div>
+          <div className="order-3 max-md:col-span-2 md:order-2">
+            <p className="type-s-14 md:type-s-15 text-balance text-black/50">
+              Explore technology deep dives, behind-the-scenes perspectives, and
+              the ideas shaping the future of autonomy.
+            </p>
+          </div>
+          <div className="order-2 flex items-end gap-24 justify-self-end md:order-3">
+            <PillButton href="#insights" className="hidden md:flex">
+              View all
+            </PillButton>
+            <div className="flex items-center gap-8 md:gap-12">
+              <button
+                className="flex-center size-32 rounded-full border-1 border-current/15 md:size-50"
+                onClick={() => scroll("left")}
+                disabled={!canScrollLeft}
+              >
+                <NavArrowLeft />
+              </button>
+              <button
+                className="flex-center size-32 rounded-full border-1 border-current/15 md:size-50"
+                onClick={() => scroll("right")}
+                disabled={!canScrollRight}
+              >
+                <NavArrowRight />
+              </button>
+            </div>
+          </div>
         </div>
-        <a
-          href="/insights"
-          className="flex-center h-36 px-20 rounded-full border border-current/15 type-s-12 text-dark transition-colors duration-300 hover:bg-pink hover:text-white hover:border-current/0 shrink-0"
-        >
-          View all
-        </a>
-      </div>
 
-      {/* Carousel */}
-      <div className="flex gap-12 md:gap-16 overflow-x-scroll no-scrollbar px-calc snap-x snap-mandatory">
-        {articles.map((article) => (
-          <a
-            key={article.slug}
-            href={`/insights/${article.slug}`}
-            className="group shrink-0 w-[calc(100vw-8rem)] sm:w-[calc(50%-1.2rem)] md:w-315 lg:w-370 flex flex-col gap-16 snap-start"
-          >
-            {/* Thumbnail */}
-            <div className="relative w-full rounded-calc overflow-clip aspect-[295/221]">
-              <Image
-                src={article.thumbnail}
-                alt={article.title}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
-                sizes="(max-width: 768px) 90vw, 37rem"
-              />
-            </div>
-
-            {/* Tags & Date */}
-            <div className="flex items-center gap-8 flex-wrap">
-              {article.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="type-s-11 px-10 py-4 rounded-full bg-dark/10 text-dark"
+        {/* Article carousel */}
+        <div className="flex flex-col gap-45 md:gap-0">
+          <div className="flex w-full flex-nowrap">
+            <div
+              ref={scrollRef}
+              className="px-calc flex snap-x snap-mandatory flex-nowrap gap-28 md:gap-24 overflow-x-auto scrollbar-hide"
+              onScroll={updateScrollState}
+            >
+              {articles.map((article) => (
+                <a
+                  key={article.href}
+                  className="group relative flex shrink-0 snap-start flex-col items-start justify-start gap-16 border-b border-current/15 pb-24 w-[calc(100vw-8rem)] md:w-[44.8rem]"
+                  href={article.href}
                 >
-                  {tag}
-                </span>
+                  <article className="relative flex w-full flex-col items-start justify-start gap-12 md:gap-16">
+                    <div className="rounded-calc relative w-full overflow-clip bg-current flex aspect-[295/221] items-center justify-center md:aspect-[448/336]">
+                      <div className="ease-snappy relative h-full w-full transition-transform duration-500 group-hover:scale-110">
+                        <Image
+                          src={article.image}
+                          alt={article.title}
+                          fill
+                          className="absolute h-full w-full object-cover"
+                        />
+                      </div>
+                    </div>
+                    <div className="relative flex w-full flex-row flex-wrap items-center justify-start gap-16">
+                      <div className="flex flex-wrap items-center gap-6">
+                        {article.tags.map((tag) => (
+                          <div
+                            key={tag}
+                            className="flex-center h-26 gap-6 shrink-0 rounded-[4rem] px-11 ease-snappy transition-colors duration-500 group-hover:bg-pink/25 group-hover:text-pink bg-current/5 text-current/50"
+                          >
+                            <span className="type-s-10">{tag}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <span className="type-s-11 md:type-s-12 whitespace-nowrap text-current/50">
+                        {article.date}
+                      </span>
+                    </div>
+                    <h2 className="type-z-18 md:type-z-24 group-hover:text-pink ease-snappy max-w-600 text-current transition-colors duration-500">
+                      {article.title}
+                    </h2>
+                  </article>
+                </a>
               ))}
-              <span className="type-s-11 text-black/50">
-                {formatDate(article.date)}
-              </span>
             </div>
+          </div>
 
-            {/* Title */}
-            <h3 className="type-z-18 md:type-z-24 group-hover:text-pink ease-snappy max-w-600 text-current transition-colors duration-500">
-              {article.title}
-            </h3>
-          </a>
-        ))}
+          {/* Mobile view all */}
+          <div className="flex items-center justify-center md:hidden">
+            <PillButton href="#insights">View all</PillButton>
+          </div>
+        </div>
       </div>
     </section>
   );

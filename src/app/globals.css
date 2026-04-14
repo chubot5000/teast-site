@@ -1,19 +1,7 @@
 @import "tailwindcss";
 
-@theme {
-  --color-dark: #191818;
-  --color-dark-light: #232222;
-  --color-pink: #ff2c6b;
-  --color-light-pink: #ffbfd2;
-  --color-cream: #e8e6e3;
-  --color-cream-light: #f9f6f8;
-  --font-zagma: "Zagma", Georgia, serif;
-  --font-neue: "NeueHaas", "Helvetica Neue", sans-serif;
-  --ease-snappy: cubic-bezier(0.19, 1, 0.22, 1);
-}
-
 @font-face {
-  font-family: Zagma;
+  font-family: "Zagma";
   src: url("/fonts/zagma-book.woff2") format("woff2");
   font-display: swap;
   font-weight: 400;
@@ -21,7 +9,7 @@
 }
 
 @font-face {
-  font-family: Zagma;
+  font-family: "Zagma";
   src: url("/fonts/zagma-book-italic.woff2") format("woff2");
   font-display: swap;
   font-weight: 400;
@@ -29,31 +17,34 @@
 }
 
 @font-face {
-  font-family: NeueHaas;
+  font-family: "NeueHaas";
   src: url("/fonts/neuehaas-medium.woff2") format("woff2");
   font-display: swap;
-  font-weight: 400;
+  font-weight: 500;
   font-style: normal;
 }
 
-/* CSS Variables */
-:root {
-  --background: #fff;
-  --foreground: #191818;
-  --font-zagma: "Zagma", sans-serif;
-  --font-neue: "NeueHaas", serif;
+@theme {
+  --font-zagma: "Zagma", serif;
+  --font-neue: "NeueHaas", sans-serif;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+
+  --color-background: #fff;
+  --color-foreground: #191818;
   --color-cream: #e8e6e3;
+  --color-cream-light: #f9f6f8;
   --color-dark: #191818;
   --color-dark-light: #232222;
   --color-pink: #ff2c6b;
+  --color-light-pink: #ffbfd2;
+
   --rounded-unit: 1.2rem;
   --padding-y: 6rem;
-  --motion: 1;
-  --duration: 0.4;
-  --marquee-duration: 40s;
-  --marquee-direction: -1;
-  --marquee-timing-function: linear;
-  --marquee-iteration-count: infinite;
+  --spacing: 0.1rem;
+
+  --ease-in-out-base: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-snappy: cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 @media (min-width: 64rem) {
@@ -62,47 +53,141 @@
   }
 }
 
-[data-theme="light"] {
-  --background: #fff;
-  --foreground: #191818;
-  color: var(--foreground);
-  background: var(--background);
+:root {
+  --duration: 0.4;
+  --motion: 1;
+  --viewport-height: 100svh;
 }
 
-[data-theme="dark"] {
-  --background: #191818;
-  --foreground: #fff;
-  color: var(--foreground);
-  background: var(--background);
-}
-
-/* Base Styles */
 html {
-  overscroll-behavior: none;
   font-size: 10px;
-  overflow-x: hidden;
 }
 
 body {
+  font-family: var(--font-neue), sans-serif;
+  color: var(--color-foreground);
+  background: var(--color-background);
+}
+
+/* Custom utility classes */
+@utility type-s-10 {
+  font-family: var(--font-neue);
+  font-size: 1rem;
+  line-height: 140%;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.02rem;
+}
+
+@utility type-s-11 {
+  font-family: var(--font-neue);
+  font-size: 1.1rem;
+  line-height: 140%;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.022rem;
+}
+
+@utility type-s-12 {
+  font-family: var(--font-neue);
+  font-size: 1.2rem;
+  line-height: 140%;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.024rem;
+}
+
+@utility type-s-14 {
+  font-family: var(--font-neue);
+  font-size: 1.4rem;
+  line-height: 160%;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.028rem;
+}
+
+@utility type-s-15 {
+  font-family: var(--font-neue);
+  font-size: 1.5rem;
+  line-height: 160%;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.015rem;
+}
+
+@utility type-z-18 {
   font-family: var(--font-zagma);
-  background: var(--background);
-  color: var(--foreground);
+  font-size: 1.8rem;
+  line-height: 110%;
+  font-weight: var(--font-weight-normal);
+  letter-spacing: -0.054rem;
 }
 
-img, video, picture, svg {
-  -webkit-user-select: none;
-  user-select: none;
+@utility type-z-20 {
+  font-family: var(--font-zagma);
+  font-size: 2rem;
+  line-height: 120%;
+  font-weight: var(--font-weight-normal);
+  letter-spacing: -0.06rem;
 }
 
-a, button {
-  cursor: pointer;
+@utility type-z-24 {
+  font-family: var(--font-zagma);
+  font-size: 2.4rem;
+  line-height: 125%;
+  font-weight: var(--font-weight-normal);
+  letter-spacing: -0.072rem;
 }
 
-/* Custom Utilities */
-@utility flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@utility type-z-28 {
+  font-family: var(--font-zagma);
+  font-size: 2.8rem;
+  line-height: 90%;
+  font-weight: var(--font-weight-normal);
+  letter-spacing: -0.084rem;
+}
+
+@utility type-z-34 {
+  font-family: var(--font-zagma);
+  font-size: 3.4rem;
+  line-height: 90%;
+  font-weight: var(--font-weight-normal);
+  letter-spacing: -0.102rem;
+}
+
+@utility type-z-40 {
+  font-family: var(--font-zagma);
+  font-size: 4rem;
+  line-height: 110%;
+  font-weight: var(--font-weight-normal);
+  letter-spacing: -0.12rem;
+}
+
+@utility type-z-60 {
+  font-family: var(--font-zagma);
+  font-size: 6rem;
+  line-height: 90%;
+  font-weight: var(--font-weight-normal);
+  letter-spacing: -0.24rem;
+}
+
+@utility type-z-72 {
+  font-family: var(--font-zagma);
+  font-size: 7.2rem;
+  line-height: 85%;
+  font-weight: var(--font-weight-normal);
+  letter-spacing: -0.36rem;
+}
+
+@utility type-z-80 {
+  font-family: var(--font-zagma);
+  font-size: 8rem;
+  line-height: 90%;
+  font-weight: var(--font-weight-normal);
+  letter-spacing: -0.32rem;
+}
+
+@utility type-h-18 {
+  font-family: var(--font-zagma);
+  font-size: 1.8rem;
+  line-height: 110%;
+  font-weight: var(--font-weight-normal);
+  letter-spacing: -0.054rem;
 }
 
 @utility w-calc {
@@ -115,11 +200,10 @@ a, button {
 }
 
 @utility px-calc {
-  padding-inline: calc(var(--spacing) * 40);
-  scroll-padding-inline: calc(var(--spacing) * 40);
+  --padding: 8rem;
+  padding-inline: calc(var(--padding) / 2);
   @media (min-width: 48rem) {
-    padding-inline: calc(50vw - min(123.4rem, 85.6944vw) / 2);
-    scroll-padding-inline: calc(50vw - min(123.4rem, 85.6944vw) / 2);
+    padding-inline: calc((100vw - min(123.4rem, 85.6944vw)) / 2);
   }
 }
 
@@ -127,181 +211,49 @@ a, button {
   border-radius: var(--rounded-unit);
 }
 
-@utility type-s-10 {
-  font-family: var(--font-neue);
-  font-size: 1rem;
-  line-height: 140%;
-  font-weight: 500;
-  letter-spacing: 0.02rem;
-}
-
-@utility type-s-11 {
-  font-family: var(--font-neue);
-  font-size: 1.1rem;
-  line-height: 140%;
-  font-weight: 500;
-  letter-spacing: 0.022rem;
-}
-
-@utility type-s-12 {
-  font-family: var(--font-neue);
-  font-size: 1.2rem;
-  line-height: 140%;
-  font-weight: 500;
-  letter-spacing: 0.024rem;
-}
-
-@utility type-s-14 {
-  font-family: var(--font-neue);
-  font-size: 1.4rem;
-  line-height: 160%;
-  font-weight: 500;
-  letter-spacing: 0.028rem;
-}
-
-@utility type-s-15 {
-  font-family: var(--font-neue);
-  font-size: 1.5rem;
-  line-height: 160%;
-  font-weight: 500;
-  letter-spacing: 0.015rem;
-}
-
-@utility type-z-18 {
-  font-family: var(--font-zagma);
-  font-size: 1.8rem;
-  line-height: 110%;
-  font-weight: 400;
-  letter-spacing: -0.054rem;
-}
-
-@utility type-z-20 {
-  font-family: var(--font-zagma);
-  font-size: 2rem;
-  line-height: 120%;
-  font-weight: 400;
-  letter-spacing: -0.06rem;
-}
-
-@utility type-z-24 {
-  font-family: var(--font-zagma);
-  font-size: 2.4rem;
-  line-height: 125%;
-  font-weight: 400;
-  letter-spacing: -0.072rem;
-}
-
-@utility type-z-28 {
-  font-family: var(--font-zagma);
-  font-size: 2.8rem;
-  line-height: 90%;
-  font-weight: 400;
-  letter-spacing: -0.084rem;
-}
-
-@utility type-z-34 {
-  font-family: var(--font-zagma);
-  font-size: 3.4rem;
-  line-height: 90%;
-  font-weight: 400;
-  letter-spacing: -0.102rem;
-}
-
-@utility type-z-40 {
-  font-family: var(--font-zagma);
-  font-size: 4rem;
-  line-height: 110%;
-  font-weight: 400;
-  letter-spacing: -0.12rem;
-}
-
-@utility type-z-60 {
-  font-family: var(--font-zagma);
-  font-size: 6rem;
-  line-height: 90%;
-  font-weight: 400;
-  letter-spacing: -0.18rem;
-}
-
-@utility type-z-72 {
-  font-family: var(--font-zagma);
-  font-size: 7.2rem;
-  line-height: 85%;
-  font-weight: 400;
-  letter-spacing: -0.504rem;
-}
-
-@utility type-z-80 {
-  font-family: var(--font-zagma);
-  font-size: 8rem;
-  line-height: 90%;
-  font-weight: 400;
-  letter-spacing: -0.32rem;
+@utility flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @utility h-slvh {
-  height: 100svh;
+  height: var(--viewport-height, 100svh);
 }
 
-@utility no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
+@utility text-s-14 {
+  font-family: var(--font-neue);
+  font-size: 1.4rem;
+  line-height: 160%;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.028rem;
 }
 
-@utility underlined {
-  @media (hover: hover) {
-    &:hover {
-      text-underline-offset: 0.2rem;
-      text-decoration-line: underline;
-      text-decoration-thickness: 1px;
-    }
-  }
+@utility text-s-15 {
+  font-family: var(--font-neue);
+  font-size: 1.5rem;
+  line-height: 160%;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.015rem;
 }
 
-/* Marquee Animation */
-@keyframes marquee {
-  0% {
-    transform: translate(0);
-  }
-  100% {
-    transform: translate3d(calc(var(--marquee-direction) * 100%), 0, 0);
-  }
+/* Lenis */
+html.lenis, html.lenis body {
+  height: auto;
 }
 
-.animate-marquee {
-  animation: marquee var(--marquee-duration) var(--marquee-timing-function) var(--marquee-iteration-count);
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
 }
 
-/* Blossom Carousel */
-[blossom-carousel] {
-  white-space: nowrap;
-  scroll-behavior: smooth;
-  overscroll-behavior-x: contain;
-  box-sizing: border-box;
-  scrollbar-width: none;
-  inline-size: 100%;
-  max-inline-size: 100vw;
-  list-style-type: none;
-  display: inline-block;
-  overflow: auto clip;
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
 }
 
-[blossom-carousel]::-webkit-scrollbar {
-  display: none;
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
-[blossom-carousel] > * {
-  white-space: initial;
-  vertical-align: top;
-  display: inline-block;
-}
-
-/* Prose base */
-p, ul, ol {
-  font-size: 1.6rem;
-  line-height: 140%;
-  letter-spacing: -0.032rem;
+.lenis.lenis-scrolling {
+  overflow: hidden;
 }

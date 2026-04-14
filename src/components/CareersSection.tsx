@@ -1,53 +1,86 @@
 "use client";
 
 import Image from "next/image";
+import PillButton from "./PillButton";
 
-const teamImages = [
-  { src: "/images/team-portrait-woman.jpg", alt: "Team portrait" },
-  { src: "/images/team-mechanic.jpg", alt: "Team mechanic" },
-  { src: "/images/team-brainstorm-man.jpg", alt: "Team collaboration" },
-  { src: "/images/sensor-inspection.jpg", alt: "Sensor inspection" },
-  { src: "/images/team-planning.jpg", alt: "Team planning" },
-  { src: "/images/team-whiteboard.jpg", alt: "Team whiteboard" },
+const teamPhotos = [
+  {
+    src: "/images/team-mechanic.jpg",
+    width: "23vw",
+    height: "17vw",
+    left: "0",
+  },
+  {
+    src: "/images/team-planning.jpg",
+    width: "31vw",
+    height: "23vw",
+    left: "calc(100% - (47vw + (39vw*0.5) + (31vw*0.5)))",
+  },
+  {
+    src: "/images/team-brainstorm-man.jpg",
+    width: "39vw",
+    height: "29vw",
+    left: "calc(100% - (47vw + (39vw*0.5)))",
+  },
+  {
+    src: "/images/team-whiteboard.jpg",
+    width: "47vw",
+    height: "35vw",
+    left: "calc(100% - 47vw)",
+  },
 ];
 
 export default function CareersSection() {
   return (
-    <section className="overflow-clip bg-background py-[var(--padding-y)] lg:min-h-screen" data-theme="light">
+    <section
+      id="careers"
+      className="relative flex w-full flex-col overflow-clip bg-white py-[var(--padding-y)] lg:min-h-screen"
+    >
+      <div className="debug absolute inset-0 pointer-events-none" />
       <div className="flex flex-col gap-65 md:gap-96">
         {/* Heading */}
-        <div className="flex flex-col gap-32 w-calc">
-          <h2 className="type-z-34 md:type-z-60 text-dark text-balance">
-            Build Physical AI with us.
-          </h2>
-          <a
-            href="/careers"
-            className="flex-center h-36 w-fit px-20 rounded-full bg-pink text-white type-s-12 transition-colors duration-300 hover:bg-pink/80"
-          >
-            Join the team
-          </a>
+        <div className="flex flex-col gap-32">
+          <div className="flex w-full justify-center text-balance">
+            <h2 className="w-calc text-[5.5rem] leading-[90%] tracking-[-0.22rem] md:text-[max(9rem,min(9vw,13rem))] md:tracking-[max(-0.6rem,min(-0.36vw,-0.52rem))]">
+              <span className="flex flex-col">
+                <span className="text-left">Build Physical AI with us.</span>
+              </span>
+            </h2>
+          </div>
+          <div className="w-calc flex">
+            <PillButton href="#careers">Join the team</PillButton>
+          </div>
         </div>
 
-        {/* Image Carousel */}
-        <div
-          className="flex gap-12 md:gap-16 overflow-x-scroll no-scrollbar px-calc"
-        >
-          {teamImages.map((img, i) => (
-            <div
-              key={i}
-              className="shrink-0 w-262 md:w-370 lg:w-448 relative rounded-calc overflow-clip"
-            >
-              <div className="relative aspect-[448/336]">
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 26rem, 45rem"
-                />
+        {/* Team photo carousel */}
+        <div className="relative flex w-full px-24">
+          <div className="rounded-calc relative flex h-[35vw] w-full items-center overflow-clip">
+            {teamPhotos.map((photo, i) => (
+              <div
+                key={i}
+                className="absolute"
+                style={{
+                  left: photo.left,
+                  width: photo.width,
+                  height: photo.height,
+                }}
+              >
+                <div
+                  className="size-full overflow-clip bg-gray-300"
+                  style={{ borderRadius: "12px" }}
+                >
+                  <div className="size-full">
+                    <Image
+                      src={photo.src}
+                      alt="Team photo"
+                      fill
+                      className="size-full object-cover"
+                    />
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
