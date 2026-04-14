@@ -49,10 +49,9 @@ export default function HeroSection() {
                       className="size-full object-cover"
                     >
                       <source
-                        src="https://static.ext.waabi.ai/WAABI_27s_2K_antinomy_export_250823.mp4"
-                        media="(min-width: 768px)"
+                        src="https://player.vimeo.com/progressive_redirect/playback/1183158293/rendition/1080p/file.mp4%20%281080p%29.mp4?loc=external&log_user=0&signature=6fd7d96d23f018db1ca1755f5be6b77d48d0f96429f23508d097513a803add17"
+                        type="video/mp4"
                       />
-                      <source src="https://static.ext.waabi.ai/Hero_27Sec_responsive.mp4" />
                     </video>
                   </div>
                 </div>
