@@ -1,79 +1,72 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function HeroSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
+
+  const scale = useTransform(scrollYProgress, [0, 0.4], [0.65, 1]);
+  const borderRadius = useTransform(scrollYProgress, [0, 0.4], [12, 0]);
+  const opacity = useTransform(scrollYProgress, [0.7, 1], [1, 0]);
+
   return (
-    <section className="relative h-screen w-full overflow-hidden flex items-center justify-center">
-      {/* Background video - desktop */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="video-bg hidden md:block"
-        poster="/images/truck-city-skyline.png"
-      >
-        <source
-          src="https://static.ext.waabi.ai/WAABI_27s_2K_antinomy_export_250823.mp4"
-          type="video/mp4"
-        />
-      </video>
-      {/* Background video - mobile */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="video-bg md:hidden"
-        poster="/images/truck-city-skyline.png"
-      >
-        <source
-          src="https://static.ext.waabi.ai/Hero_27Sec_responsive.mp4"
-          type="video/mp4"
-        />
-      </video>
-
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/40 z-[1]" />
-
-      {/* Content */}
-      <div className="relative z-[2] text-center text-white px-6 max-w-5xl">
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-          className="font-zagma text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[1.05] mb-6"
-        >
-          Built to think.
-          <br />
-          Born to haul.
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
-          className="text-lg sm:text-xl md:text-2xl font-zagma-italic italic opacity-80"
-        >
-          We built our own road.
-        </motion.p>
-      </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[2]"
-      >
+    <section
+      ref={containerRef}
+      className="text-white relative z-50 mb-[-75vh] h-[250vh] w-full md:h-[250vh]"
+    >
+      <div className="sticky top-0 left-0 h-svh w-full overflow-clip">
         <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-          className="w-6 h-10 border-2 border-white/60 rounded-full flex items-start justify-center pt-2"
+          style={{ scale, borderRadius }}
+          className="absolute inset-0 h-full w-full overflow-clip origin-center"
         >
-          <div className="w-1.5 h-1.5 bg-white/80 rounded-full" />
+          {/* Desktop Video */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 h-full w-full object-cover hidden md:block"
+          >
+            <source
+              src="https://static.ext.waabi.ai/WAABI_27s_2K_antinomy_export_250823.mp4"
+              type="video/mp4"
+            />
+          </video>
+          {/* Mobile Video */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 h-full w-full object-cover md:hidden"
+          >
+            <source
+              src="https://static.ext.waabi.ai/Hero_27Sec_responsive.mp4"
+              type="video/mp4"
+            />
+          </video>
+          {/* Dark Overlay */}
+          <div className="absolute inset-0 bg-black/20" />
         </motion.div>
-      </motion.div>
+
+        {/* Hero Text */}
+        <motion.div
+          style={{ opacity }}
+          className="absolute bottom-60 left-20 md:bottom-48 md:left-48 z-10 flex flex-col gap-16"
+        >
+          <h1 className="type-z-40 md:type-z-80 text-white max-w-[80%]">
+            Built to think.
+          </h1>
+          <p className="type-z-24 md:type-z-40 text-white/60">
+            Born to haul.
+          </p>
+        </motion.div>
+      </div>
     </section>
   );
 }

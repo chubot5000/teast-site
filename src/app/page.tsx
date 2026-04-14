@@ -1,9 +1,8 @@
-"use client";
-
-import TopBanner from "@/components/TopBanner";
-import Navbar from "@/components/Navbar";
+import NewsBanner from "@/components/NewsBanner";
+import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
-import UnlockingScale from "@/components/UnlockingScale";
+import IntroSection from "@/components/IntroSection";
+import BenefitsSection from "@/components/BenefitsSection";
 import TechnologySection from "@/components/TechnologySection";
 import SafetySection from "@/components/SafetySection";
 import PartnersSection from "@/components/PartnersSection";
@@ -13,17 +12,20 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main>
-      <TopBanner />
-      <Navbar />
-      <HeroSection />
-      <UnlockingScale />
-      <TechnologySection />
-      <SafetySection />
-      <PartnersSection />
-      <InsightsSection />
-      <CareersSection />
+    <>
+      <NewsBanner />
+      <Navigation />
+      <main className="relative min-h-svh w-full">
+        <HeroSection />
+        <IntroSection />
+        <BenefitsSection />
+        <TechnologySection />
+        <SafetySection />
+        <PartnersSection />
+        <InsightsSection />
+        <CareersSection />
+      </main>
       <Footer />
-    </main>
+    </>
   );
 }

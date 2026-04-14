@@ -1,170 +1,144 @@
 "use client";
 
-import { useRef } from "react";
 import Image from "next/image";
-import ScrollReveal from "./ScrollReveal";
 
 const articles = [
   {
-    title: "Waabi and Volvo Autonomous Solutions Partner to Deploy Autonomous Trucks",
-    tag: "Partnership",
-    date: "2024",
-    image: "/images/volvo-partnership-truck.png",
+    title: "Waabi secures $1 Billion in new funding to lead Physical AI revolution",
+    slug: "waabi-secures-1-billion-in-new-funding-to-lead-physical-ai-revolution",
+    thumbnail: "/images/trucks-facility.png",
+    tags: ["Company news"],
+    date: "2026-01-28",
   },
   {
-    title: "Inside Waabi World: How Neural Simulation is Changing Everything",
-    tag: "Technology",
-    date: "2024",
-    image: "/images/simulation-perception.png",
+    title: "From closed course to public roads: The path to driverless",
+    slug: "from-closed-course-to-public-roads-the-path-to-driverless",
+    thumbnail: "/images/truck-urban-dallas.jpg",
+    tags: ["Technology", "Company news"],
+    date: "2025-12-19",
   },
   {
-    title: "The Future of Direct-to-Customer Autonomous Trucking",
-    tag: "Industry",
-    date: "2024",
-    image: "/images/truck-car-render.png",
+    title: "Waabi unlocks direct-to-customer model with surface street driving capabilities",
+    slug: "waabi-unlocks-direct-to-customer-model-enabled-by-industry-leading-surface-street",
+    thumbnail: "/images/truck-traffic-dusk.jpg",
+    tags: ["Technology", "Company news"],
+    date: "2025-11-25",
   },
   {
-    title: "Waabi Driver: A Foundation Model for Autonomous Vehicles",
-    tag: "Research",
-    date: "2024",
-    image: "/images/driverless-cab.png",
+    title: "Waabi and Volvo demonstrate the future of autonomous trucking at NVIDIA GTC",
+    slug: "waabi-and-volvo-demonstrate-the-future-of-autonomous-trucking",
+    thumbnail: "/images/volvo-partnership-truck.png",
+    tags: ["Company news", "Technology"],
+    date: "2025-10-28",
   },
   {
-    title: "How Waabi's Simulation-First Approach Ensures Safety at Scale",
-    tag: "Safety",
-    date: "2024",
-    image: "/images/sensor-visualization.gif",
+    title: "Waabi hires industry veteran, Lior Ron, as Chief Operating Officer",
+    slug: "waabi-hires-industry-veteran-lior-ron-as-chief-operating-officer",
+    thumbnail: "/images/fleet-trucks-dusk.jpg",
+    tags: ["Company news"],
+    date: "2025-08-12",
   },
   {
-    title: "Waabi Expands Fleet Operations Across Major Freight Corridors",
-    tag: "Operations",
-    date: "2024",
-    image: "/images/fleet-trucks-dusk.jpg",
+    title: "The ultimate driving test for AI: Mixed Reality Testing pushes the boundaries of AV safety",
+    slug: "mixed-reality-testing-pushes-the-boundaries-of-av-safety",
+    thumbnail: "/images/simulation-perception.png",
+    tags: ["Technology"],
+    date: "2025-07-14",
   },
   {
-    title: "Mixed Reality Testing: Bridging Virtual and Physical Worlds",
-    tag: "Technology",
-    date: "2024",
-    image: "/images/trucks-warehouse.png",
+    title: "Join us at CVPR 2025",
+    slug: "join-us-at-cvpr-2025",
+    thumbnail: "/images/pink-gradient.png",
+    tags: ["Research"],
+    date: "2025-06-04",
   },
   {
-    title: "Building the Next Generation of Autonomous Vehicle Sensors",
-    tag: "Engineering",
-    date: "2024",
-    image: "/images/sensor-inspection.jpg",
+    title: "Simulator realism: The new safety standard for the AV industry",
+    slug: "simulator-realism-the-new-safety-standard-for-the-av-industry",
+    thumbnail: "/images/sensor-visualization.gif",
+    tags: ["Technology"],
+    date: "2025-03-11",
   },
   {
-    title: "Waabi's AI Model: From Research to Real-World Deployment",
-    tag: "Research",
-    date: "2024",
-    image: "/images/truck-urban-dallas.jpg",
+    title: "Waabi and Volvo Autonomous Solutions partner to jointly develop and deploy autonomous transportation solutions",
+    slug: "waabi-and-volvo-autonomous-solutions-partner",
+    thumbnail: "/images/volvo-truck-highway.jpg",
+    tags: ["Technology", "Company news"],
+    date: "2025-02-04",
   },
 ];
 
+function formatDate(dateStr: string) {
+  const d = new Date(dateStr + "T12:00:00");
+  return d.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
 export default function InsightsSection() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  const scroll = (direction: "left" | "right") => {
-    if (scrollRef.current) {
-      const amount = direction === "left" ? -350 : 350;
-      scrollRef.current.scrollBy({ left: amount, behavior: "smooth" });
-    }
-  };
-
   return (
-    <section id="insights" className="bg-cream text-dark py-20 md:py-32 px-6 lg:px-10">
-      <div className="max-w-[1400px] mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-6">
-          <div>
-            <ScrollReveal>
-              <h2 className="font-zagma text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight mb-4">
-                Insights.
-              </h2>
-            </ScrollReveal>
-            <ScrollReveal delay={0.1}>
-              <p className="text-dark/60 text-lg md:text-xl max-w-2xl">
-                Explore technology deep dives, behind-the-scenes perspectives,
-                and the ideas shaping the future of autonomy.
-              </p>
-            </ScrollReveal>
-          </div>
-          <ScrollReveal delay={0.2}>
-            <a
-              href="#"
-              className="mt-6 md:mt-0 inline-flex items-center gap-2 bg-dark text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-dark/90 transition-colors"
-            >
-              View all
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path
-                  d="M6 3l5 5-5 5"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </a>
-          </ScrollReveal>
+    <section
+      className="bg-cream-light text-dark relative w-full py-[var(--padding-y)]"
+    >
+      {/* Heading */}
+      <div className="w-calc flex flex-col md:flex-row md:items-end md:justify-between gap-24 mb-48 md:mb-80">
+        <div className="flex flex-col gap-24 max-w-700">
+          <h2 className="type-z-34 md:type-z-60 text-dark">Insights.</h2>
+          <p className="type-s-15 text-black/50">
+            Explore technology deep dives, behind-the-scenes perspectives, and
+            the ideas shaping the future of autonomy.
+          </p>
         </div>
-
-        {/* Navigation */}
-        <div className="flex gap-3 mb-8">
-          <button
-            onClick={() => scroll("left")}
-            className="w-10 h-10 rounded-full border border-dark/30 flex items-center justify-center hover:bg-dark/10 transition-colors"
-            aria-label="Scroll left"
-          >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M10 3l-5 5 5 5" stroke="#191818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
-          <button
-            onClick={() => scroll("right")}
-            className="w-10 h-10 rounded-full border border-dark/30 flex items-center justify-center hover:bg-dark/10 transition-colors"
-            aria-label="Scroll right"
-          >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M6 3l5 5-5 5" stroke="#191818" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
-        </div>
-
-        {/* Carousel */}
-        <div
-          ref={scrollRef}
-          className="flex gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-4"
+        <a
+          href="/insights"
+          className="flex-center h-36 px-20 rounded-full border border-current/15 type-s-12 text-dark transition-colors duration-300 hover:bg-pink hover:text-white hover:border-current/0 shrink-0"
         >
-          {articles.map((article, i) => (
-            <ScrollReveal
-              key={i}
-              delay={Math.min(i * 0.08, 0.4)}
-              className="flex-none w-[80vw] sm:w-[45vw] md:w-[30vw] lg:w-[22vw] snap-start"
-            >
-              <a href="#" className="group block">
-                <div className="rounded-card overflow-hidden mb-4">
-                  <div className="aspect-[3/2] relative overflow-hidden">
-                    <Image
-                      src={article.image}
-                      alt={article.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      sizes="(max-width: 640px) 80vw, (max-width: 768px) 45vw, (max-width: 1024px) 30vw, 22vw"
-                    />
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="text-xs font-medium text-pink uppercase tracking-wider">
-                    {article.tag}
-                  </span>
-                  <span className="text-xs text-dark/40">{article.date}</span>
-                </div>
-                <h3 className="text-base font-medium leading-snug group-hover:text-pink transition-colors line-clamp-2">
-                  {article.title}
-                </h3>
-              </a>
-            </ScrollReveal>
-          ))}
-        </div>
+          View all
+        </a>
+      </div>
+
+      {/* Carousel */}
+      <div className="flex gap-12 md:gap-16 overflow-x-scroll no-scrollbar px-calc snap-x snap-mandatory">
+        {articles.map((article) => (
+          <a
+            key={article.slug}
+            href={`/insights/${article.slug}`}
+            className="group shrink-0 w-[calc(100vw-8rem)] sm:w-[calc(50%-1.2rem)] md:w-315 lg:w-370 flex flex-col gap-16 snap-start"
+          >
+            {/* Thumbnail */}
+            <div className="relative w-full rounded-calc overflow-clip aspect-[295/221]">
+              <Image
+                src={article.thumbnail}
+                alt={article.title}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-110"
+                sizes="(max-width: 768px) 90vw, 37rem"
+              />
+            </div>
+
+            {/* Tags & Date */}
+            <div className="flex items-center gap-8 flex-wrap">
+              {article.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="type-s-11 px-10 py-4 rounded-full bg-dark/10 text-dark"
+                >
+                  {tag}
+                </span>
+              ))}
+              <span className="type-s-11 text-black/50">
+                {formatDate(article.date)}
+              </span>
+            </div>
+
+            {/* Title */}
+            <h3 className="type-z-18 md:type-z-24 group-hover:text-pink ease-snappy max-w-600 text-current transition-colors duration-500">
+              {article.title}
+            </h3>
+          </a>
+        ))}
       </div>
     </section>
   );

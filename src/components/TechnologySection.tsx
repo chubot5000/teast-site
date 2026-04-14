@@ -1,101 +1,120 @@
 "use client";
 
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
-import ScrollReveal from "./ScrollReveal";
 
 const techCards = [
   {
-    label: "Experience",
+    eyebrow: "Experience",
     title: "Waabi World",
     video: "https://static.ext.waabi.ai/intersection-trimmed.mp4",
+    href: "/insights/simulator-realism-the-new-safety-standard-for-the-av-industry",
   },
   {
-    label: "Dive into",
+    eyebrow: "Dive into",
     title: "Mixed Reality Testing",
     video: "https://static.ext.waabi.ai/Crash_variant_1.mp4",
+    href: "/insights/mixed-reality-testing-pushes-the-boundaries-of-av-safety",
   },
   {
-    label: "Meet the",
+    eyebrow: "Meet the",
     title: "Waabi Driver",
     video:
       "https://static.ext.waabi.ai/Copy_of_Copy_of_Full_Video_-_Solution_Ready_Blog-VEED__1_.mp4",
+    href: "/insights/introducing-the-waabi-driver",
   },
 ];
 
+function TechCard({
+  card,
+  index,
+}: {
+  card: (typeof techCards)[0];
+  index: number;
+}) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "center center"],
+  });
+  const clipPath = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["inset(30% round 12px)", "inset(0% round 12px)"]
+  );
+
+  return (
+    <motion.div
+      ref={cardRef}
+      className="group relative w-full overflow-clip rounded-calc"
+    >
+      <a href={card.href} className="block relative">
+        <motion.div
+          style={{ clipPath }}
+          className="relative aspect-[351/221] md:aspect-[448/336] overflow-clip rounded-calc"
+        >
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 h-full w-full object-cover"
+          >
+            <source src={card.video} type="video/mp4" />
+          </video>
+          {/* Gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50" />
+        </motion.div>
+
+        {/* Text overlay */}
+        <div className="absolute bottom-20 left-20 md:bottom-24 md:left-24 z-10 text-white">
+          <p className="type-s-12 text-white/60 mb-4">{card.eyebrow}</p>
+          <h3 className="type-z-24 md:type-z-40 text-white">{card.title}</h3>
+        </div>
+      </a>
+    </motion.div>
+  );
+}
+
 export default function TechnologySection() {
   return (
-    <section id="technology" className="bg-cream text-dark py-20 md:py-32 px-6 lg:px-10">
-      <div className="max-w-[1400px] mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
-          <ScrollReveal>
-            <h2 className="font-zagma text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight">
-              The technology
-              <br />
-              behind Waabi.
-            </h2>
-          </ScrollReveal>
-          <ScrollReveal delay={0.2}>
-            <a
-              href="#"
-              className="mt-6 md:mt-0 inline-flex items-center gap-2 bg-dark text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-dark/90 transition-colors"
-            >
-              Explore the tech
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                className="ml-1"
-              >
-                <path
-                  d="M6 3l5 5-5 5"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </a>
-          </ScrollReveal>
-        </div>
+    <section
+      className="bg-white text-dark relative w-full py-[var(--padding-y)]"
+      data-theme="light"
+    >
+      {/* Header */}
+      <div className="w-calc flex flex-col md:flex-row md:items-end md:justify-between gap-24 mb-48 md:mb-80">
+        <h2 className="type-z-34 md:type-z-60 text-dark text-balance max-w-700">
+          The technology behind Waabi.
+        </h2>
+        <a
+          href="/insights"
+          className="flex-center h-36 px-20 rounded-full border border-current/15 type-s-12 text-dark transition-colors duration-300 hover:bg-pink hover:text-white hover:border-current/0 shrink-0"
+        >
+          Explore the tech
+        </a>
+      </div>
 
-        {/* Large hero image */}
-        <ScrollReveal className="mb-12">
-          <div className="rounded-card overflow-hidden aspect-[21/9] relative">
-            <Image
-              src="/images/truck-bridge.png"
-              alt="Waabi truck on bridge"
-              fill
-              className="object-cover"
-              sizes="(max-width: 1400px) 100vw, 1400px"
-            />
-          </div>
-        </ScrollReveal>
-
-        {/* 3 tech cards */}
-        <div className="grid md:grid-cols-3 gap-6">
-          {techCards.map((card, i) => (
-            <ScrollReveal key={i} delay={i * 0.15}>
-              <div className="rounded-card overflow-hidden bg-white group cursor-pointer">
-                <div className="aspect-[4/3] relative overflow-hidden">
-                  <video
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  >
-                    <source src={card.video} type="video/mp4" />
-                  </video>
-                </div>
-                <div className="p-6">
-                  <p className="text-dark/50 text-sm mb-1">{card.label}</p>
-                  <h3 className="font-zagma text-2xl">{card.title}</h3>
-                </div>
-              </div>
-            </ScrollReveal>
-          ))}
+      {/* Hero Image */}
+      <div className="w-calc mb-48 md:mb-80">
+        <div className="relative w-full rounded-calc overflow-clip aspect-[375/620] md:aspect-[1440/860]">
+          <Image
+            src="/images/truck-highway-golden.jpg"
+            alt="The technology behind Waabi."
+            fill
+            className="object-cover"
+            sizes="100vw"
+            priority
+          />
         </div>
+      </div>
+
+      {/* Triple Cards */}
+      <div className="w-calc grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
+        {techCards.map((card, i) => (
+          <TechCard key={card.title} card={card} index={i} />
+        ))}
       </div>
     </section>
   );

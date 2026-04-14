@@ -1,70 +1,52 @@
 "use client";
 
 import Image from "next/image";
-import ScrollReveal from "./ScrollReveal";
 
 const teamImages = [
-  { src: "/images/team-group-social.jpg", alt: "Team social gathering" },
-  { src: "/images/team-portrait-woman.jpg", alt: "Team member portrait" },
-  { src: "/images/team-brainstorm-man.jpg", alt: "Team member brainstorming" },
-  { src: "/images/team-whiteboard.jpg", alt: "Team at whiteboard" },
-  { src: "/images/team-mechanic.jpg", alt: "Team mechanic at work" },
-  { src: "/images/team-planning.jpg", alt: "Team planning session" },
+  { src: "/images/team-portrait-woman.jpg", alt: "Team portrait" },
+  { src: "/images/team-mechanic.jpg", alt: "Team mechanic" },
+  { src: "/images/team-brainstorm-man.jpg", alt: "Team collaboration" },
+  { src: "/images/sensor-inspection.jpg", alt: "Sensor inspection" },
+  { src: "/images/team-planning.jpg", alt: "Team planning" },
+  { src: "/images/team-whiteboard.jpg", alt: "Team whiteboard" },
 ];
 
 export default function CareersSection() {
   return (
-    <section id="careers" className="bg-dark text-white py-20 md:py-32 px-6 lg:px-10">
-      <div className="max-w-[1400px] mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
-          <ScrollReveal>
-            <h2 className="font-zagma text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight">
-              Build Physical AI
-              <br />
-              with us.
-            </h2>
-          </ScrollReveal>
-          <ScrollReveal delay={0.2}>
-            <a
-              href="#"
-              className="mt-6 md:mt-0 inline-flex items-center gap-2 bg-pink text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-pink/90 transition-colors"
-            >
-              Join the team
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path
-                  d="M6 3l5 5-5 5"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </a>
-          </ScrollReveal>
+    <section className="overflow-clip bg-white py-[var(--padding-y)] lg:min-h-screen">
+      <div className="flex flex-col gap-65 md:gap-96">
+        {/* Heading */}
+        <div className="flex flex-col gap-32 w-calc">
+          <h2 className="type-z-34 md:type-z-60 text-dark text-balance">
+            Build Physical AI with us.
+          </h2>
+          <a
+            href="/careers"
+            className="flex-center h-36 w-fit px-20 rounded-full bg-pink text-white type-s-12 transition-colors duration-300 hover:bg-pink/80"
+          >
+            Join the team
+          </a>
         </div>
 
-        {/* Image grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        {/* Image Carousel */}
+        <div
+          className="flex gap-12 md:gap-16 overflow-x-scroll no-scrollbar px-calc"
+        >
           {teamImages.map((img, i) => (
-            <ScrollReveal key={i} delay={i * 0.1}>
-              <div
-                className={`rounded-card overflow-hidden relative ${
-                  i === 0 ? "md:col-span-2 aspect-[2/1]" : "aspect-[4/3]"
-                }`}
-              >
+            <div
+              key={i}
+              className="shrink-0 w-262 md:w-370 lg:w-448 relative rounded-calc overflow-clip"
+            >
+              <div className="relative aspect-[448/336]">
                 <Image
                   src={img.src}
                   alt={img.alt}
                   fill
-                  className="object-cover hover:scale-105 transition-transform duration-700"
-                  sizes={
-                    i === 0
-                      ? "(max-width: 768px) 100vw, 66vw"
-                      : "(max-width: 768px) 50vw, 33vw"
-                  }
+                  className="object-cover"
+                  sizes="(max-width: 768px) 26rem, 45rem"
                 />
               </div>
-            </ScrollReveal>
+            </div>
           ))}
         </div>
       </div>

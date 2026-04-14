@@ -1,63 +1,81 @@
 "use client";
 
-import ScrollReveal from "./ScrollReveal";
+import WaabiLogo from "./WaabiLogo";
 
-const footerLinks = [
-  { label: "Home", href: "#" },
-  { label: "Safety", href: "#safety" },
-  { label: "Research", href: "#technology" },
-  { label: "Company", href: "#partners" },
-  { label: "Careers", href: "#careers" },
-  { label: "Insights", href: "#insights" },
+const navLinks = [
+  { label: "Home", href: "/" },
+  { label: "Safety", href: "/safety" },
+  { label: "Research", href: "/research" },
+  { label: "Company", href: "/company" },
+  { label: "Careers", href: "/careers" },
+  { label: "Insights", href: "/insights" },
 ];
 
 export default function Footer() {
   return (
-    <footer className="bg-dark text-white border-t border-white/10">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-20 md:py-32">
-        <ScrollReveal>
-          <h2 className="font-zagma text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight mb-6">
-            We&apos;re just
-            <br />
-            getting started
+    <footer
+      className="bg-dark text-white relative w-full py-[var(--padding-y)]"
+      data-theme="dark"
+    >
+      <div className="w-calc flex flex-col gap-80 md:gap-120">
+        {/* Big headline */}
+        <div className="flex flex-col gap-32">
+          <h2
+            className="type-z-60 md:type-z-80 text-white whitespace-pre-line"
+            style={{ lineHeight: "90%" }}
+          >
+            {"We're just\ngetting started"}
           </h2>
-        </ScrollReveal>
-        <ScrollReveal delay={0.15}>
-          <p className="text-white/60 text-lg mb-16">
-            Follow along or reach out directly at{" "}
-            <a
-              href="mailto:press@waabi.ai"
-              className="text-white hover:text-pink transition-colors"
-            >
-              press@waabi.ai
-            </a>{" "}
-            |{" "}
-            <a
-              href="mailto:info@waabi.ai"
-              className="text-white hover:text-pink transition-colors"
-            >
-              info@waabi.ai
-            </a>
-          </p>
-        </ScrollReveal>
-
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between pt-10 border-t border-white/10">
-          <div className="flex flex-wrap gap-6 mb-6 md:mb-0">
-            {footerLinks.map((link) => (
+          <div className="flex flex-col gap-8">
+            <p className="type-s-15 text-white/60">
+              Follow along or reach out directly at
+            </p>
+            <div className="flex flex-wrap gap-12">
               <a
-                key={link.label}
-                href={link.href}
-                className="text-white/60 hover:text-white text-sm transition-colors"
+                href="mailto:press@waabi.ai"
+                className="type-s-15 text-white underlined"
               >
-                {link.label}
+                press@waabi.ai
               </a>
-            ))}
+              <a
+                href="mailto:info@waabi.ai"
+                className="type-s-15 text-white underlined"
+              >
+                info@waabi.ai
+              </a>
+            </div>
           </div>
-          <div className="flex flex-col sm:flex-row sm:items-center gap-4 text-sm text-white/40">
-            <a href="#" className="hover:text-white/60 transition-colors">
+        </div>
+
+        {/* Bottom */}
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-32 pt-32 border-t border-t-white/15">
+          {/* Logo and links */}
+          <div className="flex flex-col gap-24">
+            <WaabiLogo className="w-58 h-auto text-white" />
+            <div className="flex flex-wrap gap-12 md:gap-16">
+              {navLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="type-s-12 text-white/60 transition-colors duration-300 hover:text-white"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Legal */}
+          <div className="flex flex-col gap-8 md:items-end">
+            <a
+              href="https://waabi.ai/privacy-policy"
+              className="type-s-11 text-white/60 transition-colors duration-300 hover:text-white"
+            >
               Privacy Policy
             </a>
-            <span>© 2025 Waabi. All Rights Reserved.</span>
+            <p className="type-s-11 text-white/60">
+              © 2025 Waabi. All Rights Reserved.
+            </p>
           </div>
         </div>
       </div>
