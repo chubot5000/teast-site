@@ -12,11 +12,12 @@ export default function HeroSection() {
     offset: ["start start", "end end"],
   });
 
-  const scale = useTransform(scrollYProgress, [0, 1], [0.19, 1]);
+  // Video starts fullscreen, shrinks as you scroll down
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.19]);
   const borderRadius = useTransform(scale, (s) => `${16 / s}px`);
-  const textOpacity = useTransform(scrollYProgress, [0.1, 0.2], [0, 1]);
-  const textFadeOut = useTransform(scrollYProgress, [0.5, 1], [1, 0]);
-  const overlayOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
+  // Text visible at start, fades out as video shrinks
+  const textOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+  const overlayOpacity = useTransform(scrollYProgress, [0.5, 1], [0, 0.3]);
 
   return (
     <section
@@ -68,7 +69,7 @@ export default function HeroSection() {
             className="px-calc absolute top-0 flex h-svh w-full items-end justify-start pb-40 md:pb-90"
             style={{ opacity: textOpacity }}
           >
-            <motion.div className="relative" style={{ opacity: textFadeOut }}>
+            <motion.div className="relative">
               <p className="type-z-24 md:type-z-40 max-w-295 text-balance md:max-w-495">
                 Waabi is pioneering the future of Physical AI.
               </p>
