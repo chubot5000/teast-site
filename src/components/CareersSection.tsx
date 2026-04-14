@@ -5,25 +5,25 @@ import PillButton from "./PillButton";
 
 const teamPhotos = [
   {
-    src: "/images/team-truck-maintenance.jpg",
+    src: "/images/card-8.jpg",
     width: "23vw",
     height: "17vw",
     left: "0",
   },
   {
-    src: "/images/team-planning-woman.jpg",
+    src: "/images/card-9.jpg",
     width: "31vw",
     height: "23vw",
     left: "calc(100% - (47vw + (39vw*0.5) + (31vw*0.5)))",
   },
   {
-    src: "/images/team-engineer-thinking.jpg",
+    src: "/images/card-4.jpg",
     width: "39vw",
     height: "29vw",
     left: "calc(100% - (47vw + (39vw*0.5)))",
   },
   {
-    src: "/images/team-whiteboard.jpg",
+    src: "/images/card-6.jpg",
     width: "47vw",
     height: "35vw",
     left: "calc(100% - 47vw)",

@@ -76,7 +76,7 @@ export default function PartnersSection() {
             <div className="relative aspect-square w-full overflow-clip rounded-t-[var(--rounded-unit)] md:aspect-[unset] md:h-[80.7rem] md:w-10/12">
               <div className="absolute inset-0" style={{ transform: "translateY(-12%) scale(1.1)" }}>
                 <Image
-                  src="/images/waabi-nvidia-partnership.png"
+                  src="/images/card-10.jpg"
                   alt="Partnership"
                   fill
                   className="h-full w-full object-cover"

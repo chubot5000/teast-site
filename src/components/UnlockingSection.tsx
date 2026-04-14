@@ -68,7 +68,7 @@ export default function UnlockingSection() {
                   {/* Base image */}
                   <div className="rounded-calc relative aspect-square w-full overflow-clip">
                     <Image
-                      src="/images/waabi-truck-bridge.png"
+                      src="/images/card-1.jpg"
                       alt="Unlocking scale in the real world."
                       fill
                       className="h-full w-full object-cover"

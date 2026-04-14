@@ -103,7 +103,7 @@ export default function TechnologySection() {
           <div className="rounded-calc absolute inset-0 h-full w-full overflow-clip text-white">
             <div className="absolute inset-0" style={{ transform: "translateY(-12%)" }}>
               <Image
-                src="/images/waabi-simulation-render.png"
+                src="/images/card-3.jpg"
                 alt="The technology behind Waabi."
                 fill
                 className="absolute inset-0 h-full w-full object-cover"

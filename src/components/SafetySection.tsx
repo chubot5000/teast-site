@@ -11,7 +11,7 @@ export default function SafetySection() {
         style={{ transform: "translateY(-12%)" }}
       >
         <Image
-          src="/images/waabi-sensor-viz.gif"
+          src="/images/card-14.jpg"
           alt="Safety visualization"
           fill
           className="h-full w-full object-cover"
