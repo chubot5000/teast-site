@@ -8,28 +8,28 @@ const CIRCLE_SIZE = "h-133 w-133 md:h-[calc(133/1440*100vw)] md:w-[calc(133/1440
 
 const parallaxImages = {
   left: [
-    { type: "image" as const, src: "/images/truck-highway-golden.jpg" },
+    { type: "image" as const, src: "/images/waabi-truck-highway.jpg" },
     { type: "video" as const, src: "https://static.ext.waabi.ai/Scenario_3_4k_FINAL.mp4" },
-    { type: "image" as const, src: "/images/desert-road.jpg" },
-    { type: "image" as const, src: "/images/trucks-facility.png" },
+    { type: "image" as const, src: "/images/desert-blur.jpg" },
+    { type: "image" as const, src: "/images/waabi-trucks-facility.png" },
   ],
   centerLeft: [
-    { type: "image" as const, src: "/images/truck-urban-dallas.jpg" },
+    { type: "image" as const, src: "/images/waabi-dallas-intersection.jpg" },
     { type: "video" as const, src: "https://static.ext.waabi.ai/Sim_demo_scenario_4_slow_camera-SUDDEN_BRAKE_FINAL.mp4" },
-    { type: "image" as const, src: "/images/team-portrait-woman.jpg" },
-    { type: "image" as const, src: "/images/truck-bridge.png", extraClass: "md:opacity-0" },
+    { type: "image" as const, src: "/images/team-portrait-felicia.jpg" },
+    { type: "image" as const, src: "/images/waabi-truck-bridge.png", extraClass: "md:opacity-0" },
   ],
   centerRight: [
-    { type: "image" as const, src: "/images/truck-city-skyline.png" },
-    { type: "image" as const, src: "/images/sensor-inspection.jpg" },
+    { type: "image" as const, src: "/images/waabi-truck-dallas.png" },
+    { type: "image" as const, src: "/images/waabi-sensor-closeup.jpg" },
     { type: "video" as const, src: "https://static.ext.waabi.ai/Sim_construction_camera_slow_trimmed_w_actors_FINAL.mp4" },
-    { type: "image" as const, src: "/images/truck-detail.jpg" },
+    { type: "image" as const, src: "/images/waabi-truck-detail.jpg" },
   ],
   right: [
-    { type: "image" as const, src: "/images/truck-sunset-closeup.jpg" },
+    { type: "image" as const, src: "/images/waabi-truck-sunset-highway.jpg" },
     { type: "video" as const, src: "https://static.ext.waabi.ai/Scenario_1_4k_FINAL.mp4" },
-    { type: "image" as const, src: "/images/volvo-truck-highway.jpg" },
-    { type: "image" as const, src: "/images/fleet-trucks-dusk.jpg" },
+    { type: "image" as const, src: "/images/waabi-volvo-highway.jpg" },
+    { type: "image" as const, src: "/images/waabi-fleet-dusk.jpg" },
   ],
 };
 
@@ -169,7 +169,7 @@ export default function IntroSection() {
           alt="Image parallax"
           fill
           className="h-full w-full object-cover"
-          src="/images/truck-car-render.png"
+          src="/images/waabi-simulation-render.png"
           sizes="(max-width: 768px) 266px, 18.472222vw"
         />
       </div>

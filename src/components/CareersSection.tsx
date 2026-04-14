@@ -5,19 +5,19 @@ import PillButton from "./PillButton";
 
 const teamPhotos = [
   {
-    src: "/images/team-mechanic.jpg",
+    src: "/images/team-truck-maintenance.jpg",
     width: "23vw",
     height: "17vw",
     left: "0",
   },
   {
-    src: "/images/team-planning.jpg",
+    src: "/images/team-planning-woman.jpg",
     width: "31vw",
     height: "23vw",
     left: "calc(100% - (47vw + (39vw*0.5) + (31vw*0.5)))",
   },
   {
-    src: "/images/team-brainstorm-man.jpg",
+    src: "/images/team-engineer-thinking.jpg",
     width: "39vw",
     height: "29vw",
     left: "calc(100% - (47vw + (39vw*0.5)))",
