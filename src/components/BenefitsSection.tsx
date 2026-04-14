@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import Image from "next/image";
 
 const benefits = [
   {
@@ -47,7 +46,6 @@ function ArrowIcon({ className = "" }: { className?: string }) {
 export default function BenefitsSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-  const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     videoRefs.current.forEach((video, i) => {
@@ -62,7 +60,7 @@ export default function BenefitsSection() {
     });
   }, [activeIndex]);
 
-  // Scroll-based active index on mobile/desktop
+  // Scroll-based active index
   useEffect(() => {
     const items = document.querySelectorAll("[data-benefit-item]");
     const observer = new IntersectionObserver(
@@ -82,38 +80,21 @@ export default function BenefitsSection() {
 
   return (
     <section
-      className="bg-white text-dark relative w-full py-[var(--padding-y)]"
+      className="bg-background text-dark relative w-full py-[var(--padding-y)]"
       data-theme="light"
     >
-      {/* Heading */}
-      <div className="w-calc flex flex-col gap-24 md:gap-32 mb-48 md:mb-80">
-        <h2 className="type-z-34 md:type-z-60 text-dark text-balance">
-          Unlocking scale in the real world.
-        </h2>
-        <p className="type-s-15 text-black/50 max-w-670">
-          We deliver a product that&apos;s faster, safer, more scalable, and
-          efficient—unlocking the true potential of autonomous transportation.
-        </p>
-      </div>
-
       {/* Split layout */}
       <div className="w-calc flex flex-col md:flex-row md:gap-48 lg:gap-80">
-        {/* Left — sticky image/video */}
+        {/* Left — sticky video */}
         <div className="md:sticky md:top-0 md:flex md:h-screen md:items-center md:w-1/2 shrink-0">
-          <div className="relative w-full rounded-calc overflow-clip aspect-[525/600]">
-            {/* Static image behind */}
-            <Image
-              src="/images/desert-road.jpg"
-              alt="Unlocking scale in the real world."
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
+          <div className="rounded-calc relative aspect-square w-full overflow-clip">
             {/* Active video overlay */}
             {benefits.map((b, i) => (
               <video
                 key={b.title}
-                ref={(el) => { videoRefs.current[i] = el; }}
+                ref={(el) => {
+                  videoRefs.current[i] = el;
+                }}
                 muted
                 loop
                 playsInline
@@ -128,10 +109,7 @@ export default function BenefitsSection() {
         </div>
 
         {/* Right — scrolling cards */}
-        <div
-          ref={sectionRef}
-          className="md:w-1/2 flex flex-col gap-48 md:gap-0"
-        >
+        <div className="md:w-1/2 flex flex-col gap-48 md:gap-0">
           {benefits.map((benefit, index) => (
             <div
               key={benefit.title}
@@ -139,12 +117,17 @@ export default function BenefitsSection() {
               data-benefit-index={index}
               className="md:h-screen md:flex md:items-center"
             >
-              <div className="flex flex-col gap-20 py-24 md:py-0">
+              <div
+                onClick={() => setActiveIndex(index)}
+                className="pointer-events-auto flex w-full cursor-pointer flex-col gap-20"
+              >
                 {/* Progress bar */}
-                <div className="h-[2px] w-full bg-black/15 relative overflow-clip">
+                <div className="relative h-1 w-full overflow-clip bg-black/15">
                   <div
-                    className={`absolute inset-y-0 left-0 bg-pink transition-all duration-1000 ease-snappy ${
-                      index === activeIndex ? "w-full" : "w-0"
+                    className={`bg-pink absolute bottom-0 left-0 h-2 w-full transition-transform duration-1000 ease-snappy origin-left ${
+                      index === activeIndex
+                        ? "scale-x-100"
+                        : "scale-x-0"
                     }`}
                   />
                 </div>
@@ -152,25 +135,31 @@ export default function BenefitsSection() {
                 {/* Navigation arrows */}
                 <div className="flex items-center gap-8">
                   <button
-                    onClick={() =>
+                    onClick={(e) => {
+                      e.stopPropagation();
                       setActiveIndex(
-                        (prev) => (prev - 1 + benefits.length) % benefits.length
-                      )
-                    }
-                    className="group/arrow flex-center size-32 rounded-full border border-current/15 transition-colors duration-300 hover:border-current/0 hover:bg-pink hover:text-white"
+                        (prev) =>
+                          (prev - 1 + benefits.length) % benefits.length
+                      );
+                    }}
+                    className="group/arrow flex-center size-32 rounded-full border border-current/15 transition-colors duration-300 hover:border-current/0 group-hover/arrow:bg-pink"
                   >
                     <ArrowIcon className="rotate-180" />
                   </button>
                   <button
-                    onClick={() =>
-                      setActiveIndex((prev) => (prev + 1) % benefits.length)
-                    }
-                    className="group/arrow flex-center size-32 rounded-full border border-current/15 transition-colors duration-300 hover:border-current/0 hover:bg-pink hover:text-white"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActiveIndex(
+                        (prev) => (prev + 1) % benefits.length
+                      );
+                    }}
+                    className="group/arrow flex-center size-32 rounded-full border border-current/15 transition-colors duration-300 hover:border-current/0 group-hover/arrow:bg-pink"
                   >
                     <ArrowIcon />
                   </button>
                   <span className="type-s-12 text-black/50 ml-8">
-                    {String(index + 1).padStart(2, "0")} / {String(benefits.length).padStart(2, "0")}
+                    {String(index + 1).padStart(2, "0")} /{" "}
+                    {String(benefits.length).padStart(2, "0")}
                   </span>
                 </div>
 

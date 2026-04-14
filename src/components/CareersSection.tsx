@@ -13,7 +13,7 @@ const teamImages = [
 
 export default function CareersSection() {
   return (
-    <section className="overflow-clip bg-white py-[var(--padding-y)] lg:min-h-screen">
+    <section className="overflow-clip bg-background py-[var(--padding-y)] lg:min-h-screen" data-theme="light">
       <div className="flex flex-col gap-65 md:gap-96">
         {/* Heading */}
         <div className="flex flex-col gap-32 w-calc">

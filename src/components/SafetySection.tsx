@@ -4,36 +4,38 @@ import Image from "next/image";
 
 export default function SafetySection() {
   return (
-    <section className="relative h-svh w-full overflow-clip px-0 md:px-24 py-0 md:py-24">
-      <div className="rounded-calc relative h-full w-full overflow-clip text-white">
-        {/* Background Image */}
-        <Image
-          src="/images/truck-sunset-closeup.jpg"
-          alt="Setting new standards for AV safety."
-          fill
-          className="object-cover"
-          sizes="100vw"
-          priority
-        />
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/18 to-black/50" />
+    <section className="relative h-svh w-full overflow-clip px-24">
+      <div className="relative h-full w-full">
+        <div className="rounded-calc absolute inset-0 h-full w-full overflow-clip text-white">
+          {/* Background Image */}
+          <div className="absolute inset-0">
+            <Image
+              src="/images/truck-sunset-closeup.jpg"
+              alt="Setting new standards for AV safety."
+              fill
+              className="absolute inset-0 h-full w-full object-cover"
+              sizes="100vw"
+              priority
+            />
+          </div>
 
-        {/* Content */}
-        <div className="absolute inset-0 flex flex-col justify-end p-24 md:p-48 lg:p-80 gap-24 md:gap-32">
-          <h2 className="type-z-34 md:type-z-80 text-pretty text-white max-w-[80%]">
-            Setting new standards for AV safety.
-          </h2>
-          <p className="type-s-15 text-white/70 max-w-525">
-            For us, safety isn&apos;t a box to check—it&apos;s a commitment we
-            strengthen daily with a simulation-first approach, rigorous
-            validation, and a culture where safety is everyone&apos;s job.
-          </p>
-          <a
-            href="/safety"
-            className="flex-center h-36 w-fit px-20 rounded-full border border-white/25 type-s-12 text-white transition-colors duration-300 hover:bg-white hover:text-dark"
-          >
-            Explore our approach
-          </a>
+          {/* Content — bottom-left aligned */}
+          <div className="relative flex h-full w-full flex-col items-start justify-end gap-24 pb-40 md:gap-48 md:pb-105">
+            {/* Heading with inline text sizes matching source */}
+            <div className="w-calc text-[5.5rem] leading-[90%] tracking-[-0.22rem] md:text-[max(9rem,min(9vw,13rem))] md:tracking-[max(-0.6rem,min(-0.3vw,-0.52rem))]">
+              Setting new standards for AV safety.
+            </div>
+
+            {/* Pink CTA button */}
+            <div className="w-calc flex justify-start">
+              <a
+                href="/safety"
+                className="flex h-36 shrink-0 items-center justify-center rounded-full px-24 md:h-48 bg-pink text-white type-s-12 transition-colors duration-300 hover:bg-pink/80"
+              >
+                Explore our approach
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>

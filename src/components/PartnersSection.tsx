@@ -48,7 +48,7 @@ export default function PartnersSection() {
 
   return (
     <section
-      className="bg-white text-dark relative w-full py-[var(--padding-y)]"
+      className="bg-background text-dark relative w-full py-[var(--padding-y)]"
       data-theme="light"
     >
       {/* Heading */}

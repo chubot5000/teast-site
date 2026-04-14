@@ -28,10 +28,8 @@ const techCards = [
 
 function TechCard({
   card,
-  index,
 }: {
   card: (typeof techCards)[0];
-  index: number;
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -80,12 +78,12 @@ function TechCard({
 export default function TechnologySection() {
   return (
     <section
-      className="bg-white text-dark relative w-full py-[var(--padding-y)]"
+      className="bg-background text-dark relative w-full py-[var(--padding-y)]"
       data-theme="light"
     >
       {/* Header */}
       <div className="w-calc flex flex-col md:flex-row md:items-end md:justify-between gap-24 mb-48 md:mb-80">
-        <h2 className="type-z-34 md:type-z-60 text-dark text-balance max-w-700">
+        <h2 className="type-z-28 md:type-z-60 text-balance text-dark max-w-700">
           The technology behind Waabi.
         </h2>
         <a
@@ -112,8 +110,8 @@ export default function TechnologySection() {
 
       {/* Triple Cards */}
       <div className="w-calc grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
-        {techCards.map((card, i) => (
-          <TechCard key={card.title} card={card} index={i} />
+        {techCards.map((card) => (
+          <TechCard key={card.title} card={card} />
         ))}
       </div>
     </section>
