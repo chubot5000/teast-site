@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @font-face {
   font-family: "Zagma";
@@ -26,11 +24,16 @@
   font-display: swap;
 }
 
-:root {
+@theme {
+  --color-dark: #191818;
+  --color-dark-light: #232222;
+  --color-pink: #ff2c6b;
+  --color-cream: #e8e6e3;
+  --color-cream-light: #f9f6f8;
   --font-zagma: "Zagma", Georgia, serif;
   --font-zagma-italic: "ZagmaItalic", Georgia, serif;
-  --font-neue-haas: "NeueHaas", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --rounded-unit: 1.2rem;
+  --font-sans: "NeueHaas", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --radius-card: 1.2rem;
 }
 
 * {
@@ -44,14 +47,13 @@ html {
 }
 
 body {
-  font-family: var(--font-neue-haas);
+  font-family: var(--font-sans);
   color: #191818;
   background: #191818;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Hide scrollbar for testimonial carousel */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
@@ -60,7 +62,6 @@ body {
   scrollbar-width: none;
 }
 
-/* Video container */
 .video-bg {
   position: absolute;
   inset: 0;
