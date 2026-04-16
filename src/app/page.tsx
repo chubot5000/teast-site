@@ -1,40 +1,39 @@
 "use client";
 
 import { SmoothScroll } from "@/lib/smooth-scroll";
-import NewsBanner from "@/components/NewsBanner";
-import Navigation from "@/components/Navigation";
+import Nav from "@/components/chip/Nav";
+import CHIPHero from "@/components/chip/CHIPHero";
+import AboutSection from "@/components/chip/AboutSection";
+import StatsSection from "@/components/chip/StatsSection";
 import HeroSection from "@/components/HeroSection";
 import IntroSection from "@/components/IntroSection";
-import UnlockingSection from "@/components/UnlockingSection";
-import TechnologySection from "@/components/TechnologySection";
-import SafetySection from "@/components/SafetySection";
-import PartnersSection from "@/components/PartnersSection";
-import InsightsSection from "@/components/InsightsSection";
-import CareersSection from "@/components/CareersSection";
-import Footer from "@/components/Footer";
+import SustainabilitySection from "@/components/chip/SustainabilitySection";
+import WhyChipSection from "@/components/chip/WhyChipSection";
+import TestimonialsSection from "@/components/chip/TestimonialsSection";
+import CTASection from "@/components/chip/CTASection";
+import ChipFooter from "@/components/chip/ChipFooter";
 
 export default function HomePage() {
   return (
     <>
       <SmoothScroll />
-      <NewsBanner />
-      <Navigation />
+      <Nav />
       <main className="relative min-h-svh w-full">
         <div className="flex flex-col">
-          <section id="overview" className="relative flex w-full flex-col">
-            <div className="debug absolute inset-0 pointer-events-none" />
+          <CHIPHero />
+          <AboutSection />
+          <StatsSection />
+          <section id="video-zoom" className="relative flex w-full flex-col">
             <HeroSection />
             <IntroSection />
           </section>
-          <UnlockingSection />
-          <TechnologySection />
-          <SafetySection />
-          <PartnersSection />
-          <InsightsSection />
-          <CareersSection />
+          <SustainabilitySection />
+          <WhyChipSection />
+          <TestimonialsSection />
+          <CTASection />
         </div>
       </main>
-      <Footer />
+      <ChipFooter />
     </>
   );
 }

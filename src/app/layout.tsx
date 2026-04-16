@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Homepage",
-  description: "Waabi is pioneering the future of Physical AI.",
+  title: "$CHIP - USD.AI Governance Token",
+  description: "CHIP is the governance token of USD.AI, a protocol generating real revenue from AI companies financing GPU infrastructure.",
 };
 
 export default function RootLayout({

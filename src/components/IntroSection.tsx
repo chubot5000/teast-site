@@ -6,30 +6,49 @@ import Image from "next/image";
 
 const CIRCLE_SIZE = "h-133 w-133 md:h-[calc(133/1440*100vw)] md:w-[calc(133/1440*100vw)]";
 
+const CHIP_IMAGES = [
+  "/images/carousel/card-1.jpg",
+  "/images/carousel/card-2.jpg",
+  "/images/carousel/card-3.jpg",
+  "/images/carousel/card-4.jpg",
+  "/images/carousel/card-5.jpg",
+  "/images/carousel/card-6.jpg",
+  "/images/carousel/card-7.jpg",
+  "/images/carousel/card-8.jpg",
+  "/images/carousel/card-9.jpg",
+  "/images/carousel/card-10.jpg",
+  "/images/carousel/card-11.jpg",
+  "/images/carousel/card-12.jpg",
+  "/images/carousel/card-13.jpg",
+  "/images/carousel/card-14.jpg",
+  "/images/carousel/card-15.jpg",
+  "/images/carousel/card-16.jpg",
+];
+
 const parallaxImages = {
   left: [
-    { type: "image" as const, src: "/images/card-5.jpg" },
-    { type: "video" as const, src: "https://static.ext.waabi.ai/Scenario_3_4k_FINAL.mp4" },
-    { type: "image" as const, src: "/images/card-4.jpg" },
-    { type: "image" as const, src: "/images/card-9.jpg" },
+    { type: "image" as const, src: CHIP_IMAGES[0] },
+    { type: "image" as const, src: CHIP_IMAGES[1] },
+    { type: "image" as const, src: CHIP_IMAGES[2] },
+    { type: "image" as const, src: CHIP_IMAGES[3] },
   ],
   centerLeft: [
-    { type: "image" as const, src: "/images/card-19.jpg" },
-    { type: "video" as const, src: "https://static.ext.waabi.ai/Sim_demo_scenario_4_slow_camera-SUDDEN_BRAKE_FINAL.mp4" },
-    { type: "image" as const, src: "/images/card-1.jpg" },
-    { type: "image" as const, src: "/images/card-1.jpg", extraClass: "md:opacity-0" },
+    { type: "image" as const, src: CHIP_IMAGES[4] },
+    { type: "image" as const, src: CHIP_IMAGES[5] },
+    { type: "image" as const, src: CHIP_IMAGES[6] },
+    { type: "image" as const, src: CHIP_IMAGES[7], extraClass: "md:opacity-0" },
   ],
   centerRight: [
-    { type: "image" as const, src: "/images/card-2.jpg" },
-    { type: "image" as const, src: "/images/card-18.jpg" },
-    { type: "video" as const, src: "https://static.ext.waabi.ai/Sim_construction_camera_slow_trimmed_w_actors_FINAL.mp4" },
-    { type: "image" as const, src: "/images/card-20.jpg" },
+    { type: "image" as const, src: CHIP_IMAGES[8] },
+    { type: "image" as const, src: CHIP_IMAGES[9] },
+    { type: "image" as const, src: CHIP_IMAGES[10] },
+    { type: "image" as const, src: CHIP_IMAGES[11] },
   ],
   right: [
-    { type: "image" as const, src: "/images/card-6.jpg" },
-    { type: "video" as const, src: "https://static.ext.waabi.ai/Scenario_1_4k_FINAL.mp4" },
-    { type: "image" as const, src: "/images/card-7.jpg" },
-    { type: "image" as const, src: "/images/card-15.jpg" },
+    { type: "image" as const, src: CHIP_IMAGES[12] },
+    { type: "image" as const, src: CHIP_IMAGES[13] },
+    { type: "image" as const, src: CHIP_IMAGES[14] },
+    { type: "image" as const, src: CHIP_IMAGES[15] },
   ],
 };
 
@@ -40,10 +59,10 @@ function MediaCircle({
   item: { type: "image" | "video"; src: string; extraClass?: string };
   extraClass?: string;
 }) {
-  const cls = `rounded-calc bg-cream relative ${CIRCLE_SIZE} overflow-clip ${extraClass} ${item.extraClass || ""}`;
-  if (item.type === "video") {
-    return (
-      <div className={cls}>
+  const cls = `relative ${CIRCLE_SIZE} overflow-clip ${extraClass} ${item.extraClass || ""}`;
+  return (
+    <div className={cls} style={{ borderRadius: "3px", border: "1px solid rgba(255,255,255,0.12)", background: "#1D1A17" }}>
+      {item.type === "video" ? (
         <div className="absolute inset-0 size-full">
           <div className="absolute inset-0">
             <video
@@ -56,19 +75,16 @@ function MediaCircle({
             />
           </div>
         </div>
-      </div>
-    );
-  }
-  return (
-    <div className={cls}>
-      <Image
-        alt="Image parallax"
-        loading="lazy"
-        fill
-        className="h-full w-full object-cover"
-        sizes="(max-width: 768px) 266px, 18.472222vw"
-        src={item.src}
-      />
+      ) : (
+        <Image
+          alt=""
+          loading="lazy"
+          fill
+          className="h-full w-full object-cover"
+          sizes="(max-width: 768px) 266px, 18.472222vw"
+          src={item.src}
+        />
+      )}
     </div>
   );
 }
@@ -113,7 +129,7 @@ export default function IntroSection() {
   return (
     <section
       ref={sectionRef}
-      className="bg-background relative w-full overflow-clip h-[150vh]"
+      className="bg-[#2F2823] relative w-full overflow-clip h-[150vh]"
     >
       <div className="absolute top-0 left-0 w-30 h-[150vh]" />
       <div className="absolute inset-0 origin-top">
@@ -146,17 +162,14 @@ export default function IntroSection() {
               style={{ y: centerY }}
             >
               <div className="absolute aspect-square w-full rounded-full">
-                <div className="absolute size-full rounded-full bg-white blur-2xl" />
+                <div className="absolute size-full rounded-full bg-[#2F2823] blur-3xl opacity-90" />
               </div>
-              <p className="type-z-18 md:type-z-24 relative text-black/50">
-                We built our own road.
+              <p className="font-eiko relative text-[18px] md:text-[24px] leading-[1.1] text-white/50">
+                CHIP Governance
               </p>
-              <p className="type-z-18 md:type-z-24 text-dark relative max-w-558 overflow-clip">
-                Our revolutionary Physical AI Platform enables—for the first time
-                ever—true scale, generalizing to different form factors,
-                geographies, and environments. This breakthrough is powered by the
-                same AI model acting as a shared brain for both autonomous trucks
-                and robotaxis.
+              <p className="font-eiko relative text-[18px] md:text-[24px] leading-[1.25] max-w-[558px] text-white">
+                From governance rights to insurance staking, CHIP gives holders
+                control over every layer of the protocol.
               </p>
             </motion.div>
           </div>
@@ -164,12 +177,12 @@ export default function IntroSection() {
       </div>
 
       {/* Transition circle */}
-      <div className={`rounded-calc bg-cream relative ${CIRCLE_SIZE} max-md:hidden absolute bottom-0 left-1/2 -translate-x-1/2`}>
+      <div className={`relative ${CIRCLE_SIZE} max-md:hidden absolute bottom-0 left-1/2 -translate-x-1/2`} style={{ borderRadius: "3px", border: "1px solid rgba(255,255,255,0.12)", background: "#1D1A17" }}>
         <Image
-          alt="Image parallax"
+          alt=""
           fill
           className="h-full w-full object-cover"
-          src="/images/card-3.jpg"
+          src="/images/carousel/card-3.jpg"
           sizes="(max-width: 768px) 266px, 18.472222vw"
         />
       </div>

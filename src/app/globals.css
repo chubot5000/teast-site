@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* PP Eiko font - used in CHIP page */
+.font-eiko {
+  font-family: "PP Eiko", Georgia, serif;
+}
+
 @font-face {
   font-family: "Zagma";
   src: url("/fonts/zagma-book.woff2") format("woff2");
